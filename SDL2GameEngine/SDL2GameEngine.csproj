@@ -37,8 +37,10 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="InputHandler.cs" />
     <Compile Include="LegoMan.cs" />
     <Compile Include="LoaderParams.cs" />
+    <Compile Include="MouseButtons.cs" />
     <Compile Include="program.cs" />
     <Compile Include="SDLGameObject.cs" />
     <Compile Include="TextureManager.cs" />
@@ -48,6 +50,9 @@
       <HintPath>..\..\..\..\GitHub\SDL2-CS\bin\Release\SDL2-CS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

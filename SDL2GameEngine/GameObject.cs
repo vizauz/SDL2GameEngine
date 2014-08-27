@@ -15,18 +15,6 @@ namespace SDL2GameEngine
         protected int height;
         protected int width;
 
-        //public virtual void Load(int x, int y, int width, int height, string textureId)
-        //{
-        //    this.x = x;
-        //    this.y = y;
-        //    this.width = width;
-        //    this.height = height;
-        //    this.textureId = textureId;
-
-        //    this.currentFrame = 0;
-        //    this.currentRow = 1;
-        //}
-
         public virtual void Draw()
         {
             TextureManager.Instace.DrawFrame(

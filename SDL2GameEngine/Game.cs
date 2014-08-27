@@ -19,10 +19,8 @@ namespace SDL2GameEngine
 
         public bool Running
         {
-            get
-            {
-                return _running;
-            }
+            get { return _running; }
+            set { _running = value; }
         }
 
         private static readonly Game _instance = new Game();
@@ -43,6 +41,7 @@ namespace SDL2GameEngine
                 {
                     Console.WriteLine("Window init success");
                     renderer = SDL.SDL_CreateRenderer(window, -1, 0);
+
                     if (renderer != IntPtr.Zero)
                     {
                         Console.WriteLine("Renderer init success");
@@ -117,19 +116,7 @@ namespace SDL2GameEngine
 
         public void HandleEvents()
         {
-            SDL.SDL_Event _event;
-
-            if (SDL.SDL_PollEvent(out _event) > 0)
-            {
-                switch (_event.type)
-                {
-                    case SDL.SDL_EventType.SDL_QUIT:
-                        _running = false;
-                        break;
-                    default:
-                        break;
-                }
-            }
+            InputHandler.Instance.Update();
         }
     }
 }
