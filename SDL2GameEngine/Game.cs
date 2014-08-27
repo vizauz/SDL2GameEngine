@@ -8,8 +8,15 @@ namespace SDL2GameEngine
 {
     class Game
     {
-        private int frame;
+
+        List<SDLGameObject> gameObjs = new List<SDLGameObject>();
+        SDLGameObject player;
+        SDLGameObject enemy1;
+        SDLGameObject enemy2;
+        SDLGameObject enemy3;
+
         private bool _running;
+
         public bool Running
         {
             get
@@ -18,8 +25,13 @@ namespace SDL2GameEngine
             }
         }
 
+        private static readonly Game _instance = new Game();
+        public static Game Instance { get { return _instance; } }
+
         private IntPtr window = IntPtr.Zero;
         private IntPtr renderer = IntPtr.Zero;
+
+        public IntPtr GetRender() { return renderer; }
 
         public bool Init(string title, int xpos, int ypos, int width, int height, SDL.SDL_WindowFlags flags)
         {
@@ -37,8 +49,20 @@ namespace SDL2GameEngine
                         SDL.SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 
-                        TextureManager.Instace.Load("face.png", "face", renderer);
-                        TextureManager.Instace.Load("walkingEye.png", "eye", renderer);
+                        TextureManager.Instace.Load("face.png", "man", renderer);
+                        TextureManager.Instace.Load("walkingEye.png", "enemy", renderer);
+
+                        player = new LegoMan(new LoaderParams(100, 100, 40, 60, "man"));
+                        enemy1 = new Enemy(new LoaderParams(200, 50, 60, 60, "enemy"));
+                        enemy2 = new Enemy(new LoaderParams(200, 120, 60, 60, "enemy"));
+                        enemy3 = new Enemy(new LoaderParams(200, 200, 60, 60, "enemy"));
+
+                        
+
+                        gameObjs.Add(player);
+                        gameObjs.Add(enemy1);
+                        gameObjs.Add(enemy2);
+                        gameObjs.Add(enemy3);
                     }
                     else
                     {
@@ -67,9 +91,10 @@ namespace SDL2GameEngine
             // clear renderer to draw color
             SDL.SDL_RenderClear(renderer);
 
-            TextureManager.Instace.Draw("face", 100, 100, 40, 60, renderer);
-            TextureManager.Instace.DrawFrame("eye", 200, 200, 60, 60, 1, frame, renderer);
-            TextureManager.Instace.DrawFrame("eye", 270, 200, 60, 60, 1, frame, renderer, SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL);
+            foreach (GameObject go in gameObjs)
+            {
+                go.Draw();
+            }
             
             // draw to the screen
             SDL.SDL_RenderPresent(renderer);
@@ -77,7 +102,10 @@ namespace SDL2GameEngine
 
         public void Update()
         {
-            frame = (int)(SDL.SDL_GetTicks() / 100) % 8;
+            foreach (GameObject go in gameObjs)
+            {
+                go.Update();
+            }
         }
 
         public void Clean()

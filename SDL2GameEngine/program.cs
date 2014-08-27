@@ -10,18 +10,22 @@ namespace SDL2GameEngine
     {
         static void Main()
         {
-            Game game = new Game();
 
-            game.Init(String.Empty, 805240832, 805240832, 640, 480, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
-
-            while (game.Running)
+            if (Game.Instance.Init(String.Empty, 805240832, 805240832, 640, 480, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN))
             {
-                game.HandleEvents();
-                game.Update();
-                game.Render();
+                while (Game.Instance.Running)
+                {
+                    Game.Instance.HandleEvents();
+                    Game.Instance.Update();
+                    Game.Instance.Render();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Game init failure");
             }
 
-            game.Clean();
+            Game.Instance.Clean();
         }
     }
 }

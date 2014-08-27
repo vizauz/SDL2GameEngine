@@ -13,7 +13,7 @@ namespace SDL2GameEngine
         public static TextureManager Instace { get { return _instance; } }
 
         Dictionary<string, IntPtr> textureMap = new Dictionary<string, IntPtr>();
-        
+
         public bool Load(string fileName, string id, IntPtr renderer)
         {
             IntPtr tmpSurface = SDL_image.IMG_Load(fileName);
