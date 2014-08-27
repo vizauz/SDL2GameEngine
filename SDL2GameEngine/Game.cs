@@ -8,6 +8,7 @@ namespace SDL2GameEngine
 {
     class Game
     {
+        private int frame;
         private bool _running;
         public bool Running
         {
@@ -34,6 +35,10 @@ namespace SDL2GameEngine
                     {
                         Console.WriteLine("Renderer init success");
                         SDL.SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
+
+                        TextureManager.Instace.Load("face.png", "face", renderer);
+                        TextureManager.Instace.Load("walkingEye.png", "eye", renderer);
                     }
                     else
                     {
@@ -62,8 +67,17 @@ namespace SDL2GameEngine
             // clear renderer to draw color
             SDL.SDL_RenderClear(renderer);
 
+            TextureManager.Instace.Draw("face", 100, 100, 40, 60, renderer);
+            TextureManager.Instace.DrawFrame("eye", 200, 200, 60, 60, 1, frame, renderer);
+            TextureManager.Instace.DrawFrame("eye", 270, 200, 60, 60, 1, frame, renderer, SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL);
+            
             // draw to the screen
             SDL.SDL_RenderPresent(renderer);
+        }
+
+        public void Update()
+        {
+            frame = (int)(SDL.SDL_GetTicks() / 100) % 8;
         }
 
         public void Clean()

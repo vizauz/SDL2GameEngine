@@ -17,6 +17,7 @@ namespace SDL2GameEngine
             while (game.Running)
             {
                 game.HandleEvents();
+                game.Update();
                 game.Render();
             }
 
