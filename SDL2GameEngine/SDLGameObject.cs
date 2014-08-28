@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using OpenTK;
 
 namespace SDL2GameEngine
 {
     class SDLGameObject : GameObject
     {
+        
+
         public SDLGameObject(LoaderParams _params)
         {
-            x = _params.X;
-            y = _params.Y;
+            position.X = _params.X;
+            position.Y = _params.Y;
             width = _params.Width;
             height = _params.Height;
             textureId = _params.TextureId;

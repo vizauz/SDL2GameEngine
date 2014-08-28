@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using OpenTK;
+using SDL2;
 
 namespace SDL2GameEngine
 {
@@ -10,24 +9,34 @@ namespace SDL2GameEngine
         protected string textureId;
         protected int currentRow;
         protected int currentFrame;
-        protected int x;
-        protected int y;
+        protected Vector2d position;
         protected int height;
         protected int width;
 
-        public virtual void Draw()
+        public int Width { get { return width; } }
+        public int Height { get { return height; } }
+        public Vector2d Position { get { return position; } }
+
+        public virtual void Draw(SDL.SDL_RendererFlip flip = SDL.SDL_RendererFlip.SDL_FLIP_NONE)
         {
-            TextureManager.Instace.DrawFrame(
+            TextureManager.Instance.DrawFrame(
                 textureId, 
-                x, 
-                y, 
+                (int)position.X,
+                (int)position.Y,
                 width, 
                 height, 
                 currentRow, 
                 currentFrame, 
-                Game.Instance.GetRender());
+                Game.Instance.Renderer, 
+                flip);
         }
-        public virtual void Update() { }
-        public virtual void Clean() { }
+        public virtual void Update() 
+        {
+            throw new NotImplementedException();
+        }
+        public virtual void Clean() 
+        {
+            throw new NotImplementedException();        
+        }
     }
 }

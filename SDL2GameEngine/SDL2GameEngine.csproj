@@ -33,14 +33,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AnimatedGraphic.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameoverState.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="GameStateMachine.cs" />
+    <Compile Include="GameStates.cs" />
     <Compile Include="InputHandler.cs" />
-    <Compile Include="LegoMan.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="LoaderParams.cs" />
+    <Compile Include="MenuButton.cs" />
+    <Compile Include="MenuState.cs" />
     <Compile Include="MouseButtons.cs" />
+    <Compile Include="PauseState.cs" />
+    <Compile Include="PlayState.cs" />
     <Compile Include="program.cs" />
     <Compile Include="SDLGameObject.cs" />
     <Compile Include="TextureManager.cs" />
@@ -52,7 +64,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TextFile1.txt" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

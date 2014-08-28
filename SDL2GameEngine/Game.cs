@@ -8,15 +8,7 @@ namespace SDL2GameEngine
 {
     class Game
     {
-
-        List<SDLGameObject> gameObjs = new List<SDLGameObject>();
-        SDLGameObject player;
-        SDLGameObject enemy1;
-        SDLGameObject enemy2;
-        SDLGameObject enemy3;
-
         private bool _running;
-
         public bool Running
         {
             get { return _running; }
@@ -27,9 +19,12 @@ namespace SDL2GameEngine
         public static Game Instance { get { return _instance; } }
 
         private IntPtr window = IntPtr.Zero;
-        private IntPtr renderer = IntPtr.Zero;
+        private IntPtr _renderer = IntPtr.Zero;
 
-        public IntPtr GetRender() { return renderer; }
+        public IntPtr Renderer { get { return _renderer; } }
+
+        private GameStateMachine _gsm = new GameStateMachine();
+        public GameStateMachine GSM { get { return _gsm; } }
 
         public bool Init(string title, int xpos, int ypos, int width, int height, SDL.SDL_WindowFlags flags)
         {
@@ -40,28 +35,14 @@ namespace SDL2GameEngine
                 if (window != IntPtr.Zero)
                 {
                     Console.WriteLine("Window init success");
-                    renderer = SDL.SDL_CreateRenderer(window, -1, 0);
+                    _renderer = SDL.SDL_CreateRenderer(window, -1, 0);
 
-                    if (renderer != IntPtr.Zero)
+                    if (_renderer != IntPtr.Zero)
                     {
                         Console.WriteLine("Renderer init success");
-                        SDL.SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+                        SDL.SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
 
-
-                        TextureManager.Instace.Load("face.png", "man", renderer);
-                        TextureManager.Instace.Load("walkingEye.png", "enemy", renderer);
-
-                        player = new LegoMan(new LoaderParams(100, 100, 40, 60, "man"));
-                        enemy1 = new Enemy(new LoaderParams(200, 50, 60, 60, "enemy"));
-                        enemy2 = new Enemy(new LoaderParams(200, 120, 60, 60, "enemy"));
-                        enemy3 = new Enemy(new LoaderParams(200, 200, 60, 60, "enemy"));
-
-                        
-
-                        gameObjs.Add(player);
-                        gameObjs.Add(enemy1);
-                        gameObjs.Add(enemy2);
-                        gameObjs.Add(enemy3);
+                        _gsm.ChangeState(new MenuState());
                     }
                     else
                     {
@@ -88,29 +69,23 @@ namespace SDL2GameEngine
         public void Render()
         {
             // clear renderer to draw color
-            SDL.SDL_RenderClear(renderer);
+            SDL.SDL_RenderClear(_renderer);
 
-            foreach (GameObject go in gameObjs)
-            {
-                go.Draw();
-            }
-            
+            _gsm.Render();
+ 
             // draw to the screen
-            SDL.SDL_RenderPresent(renderer);
+            SDL.SDL_RenderPresent(_renderer);
         }
 
         public void Update()
         {
-            foreach (GameObject go in gameObjs)
-            {
-                go.Update();
-            }
+            _gsm.Update();
         }
 
         public void Clean()
         {
             SDL.SDL_DestroyWindow(window);
-            SDL.SDL_DestroyRenderer(renderer);
+            SDL.SDL_DestroyRenderer(_renderer);
             SDL.SDL_Quit();
         }
 
