@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SDL2GameEngine
 {
@@ -10,6 +8,7 @@ namespace SDL2GameEngine
         public string StateID { get; protected set; }
 
         public List<GameObject> gameObjects = new List<GameObject>();
+        public List<string> textureIDs = new List<string>();
 
         public virtual void Render()
         {

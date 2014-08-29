@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SDL2GameEngine
 {
     class GameStateMachine
     {
-
         Stack<GameState> states = new Stack<GameState>();
 
         public void PushState(GameState state)

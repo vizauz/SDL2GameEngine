@@ -13,13 +13,15 @@ namespace SDL2GameEngine
         }
 
         bool released;
-        Action callbackFunction;
+        //Action callbackFunction;
+                
+        public int callbackID { get; private set; }
+        public Action CallbackFunction { get; set; }
 
-        public MenuButton(LoaderParams _params, Action callback) 
-            : base(_params) 
+        public MenuButton() 
+            : base() 
         { 
             currentFrame = (int)ButtonState.MOUSE_OUT;
-            callbackFunction = callback;
         }
 
         public override void Update()
@@ -36,7 +38,7 @@ namespace SDL2GameEngine
                 {
                     currentFrame = (int)ButtonState.CLICKED;
 
-                    callbackFunction();
+                    CallbackFunction();
 
                     released = false;
                 }
@@ -50,6 +52,12 @@ namespace SDL2GameEngine
             {
                 currentFrame = (int)ButtonState.MOUSE_OUT;  
             }
+        }
+
+        public override void Load(LoaderParams _params)
+        {
+            base.Load(_params);
+            callbackID = _params.CallbackID;
         }
     }
 }

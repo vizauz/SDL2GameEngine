@@ -37,24 +37,28 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AnimatedGraphic.cs" />
-    <Compile Include="Enemy.cs" />
+    <Compile Include="GameObjects\AnimatedGraphic.cs" />
+    <Compile Include="GameObjects\Enemy.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="GameObject.cs" />
-    <Compile Include="GameoverState.cs" />
-    <Compile Include="GameState.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="BaseCreator.cs" />
+    <Compile Include="GameObjectFactory.cs" />
+    <Compile Include="GameStates\MenuState.cs" />
+    <Compile Include="Creators.cs" />
+    <Compile Include="StateParser.cs" />
+    <Compile Include="GameStates\GameoverState.cs" />
+    <Compile Include="GameStates\GameState.cs" />
     <Compile Include="GameStateMachine.cs" />
-    <Compile Include="GameStates.cs" />
     <Compile Include="InputHandler.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="GameObjects\Player.cs" />
     <Compile Include="LoaderParams.cs" />
-    <Compile Include="MenuButton.cs" />
-    <Compile Include="MenuState.cs" />
+    <Compile Include="GameObjects\MenuButton.cs" />
+    <Compile Include="GameStates\MainMenuState.cs" />
     <Compile Include="MouseButtons.cs" />
-    <Compile Include="PauseState.cs" />
-    <Compile Include="PlayState.cs" />
+    <Compile Include="GameStates\PauseState.cs" />
+    <Compile Include="GameStates\PlayState.cs" />
     <Compile Include="program.cs" />
-    <Compile Include="SDLGameObject.cs" />
+    <Compile Include="GameObjects\SDLGameObject.cs" />
     <Compile Include="TextureManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,9 +66,8 @@
       <HintPath>..\..\..\..\GitHub\SDL2-CS\bin\Release\SDL2-CS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

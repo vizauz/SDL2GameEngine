@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SDL2GameEngine
 {
@@ -12,14 +9,28 @@ namespace SDL2GameEngine
         public int Width { get; private set; }
         public int Height { get; private set; }
         public string  TextureId { get; private set; }
+        public int NumOfFrames { get; private set; }
+        public int CallbackID { get; private set; }
+        public int AnimSpeed { get; private set; }
 
-        public LoaderParams(int x, int y, int width, int height, string textureId)
+        public LoaderParams(
+            int x, 
+            int y, 
+            int width, 
+            int height, 
+            string textureId, 
+            int numberOfFrames = 0, 
+            int callbackID = 0, 
+            int animSpeed = 0)
         {
             X = x;
             Y = y;
             Width = width;
             Height = height;
             TextureId = textureId;
+            NumOfFrames = numberOfFrames;
+            CallbackID = callbackID;
+            AnimSpeed = animSpeed;
         }
     }
 }

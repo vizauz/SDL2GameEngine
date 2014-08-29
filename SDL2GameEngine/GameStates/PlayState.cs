@@ -1,41 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿#define DEBUG
+
+using System;
 
 namespace SDL2GameEngine
 {
     class PlayState : GameState
     {
-
-        //Stack<GameObject> gameObjects = new Stack<GameObject>();
-
         public PlayState()
         {
-            StateID = "play";
+            StateID = "Play";
         }
 
         public override bool OnEnter()
         {
-            Console.WriteLine("Enter play state");
-            if (!TextureManager.Instance.Load("assets/face.png", "player", Game.Instance.Renderer))
-                return false;
-
-            if (!TextureManager.Instance.Load("assets/walkingEye.png", "enemy", Game.Instance.Renderer))
-                return false;
-
-            Player player = new Player(new LoaderParams(100, 100, 40, 60, "player"));
-            Enemy enemy = new Enemy(new LoaderParams(100, 200, 60, 60, "enemy"));
-
-            gameObjects.Add(player);
-            gameObjects.Add(enemy);
+            StateParser.ParseState("config.xml", StateID, ref gameObjects, ref textureIDs);
 
             return true;
         }
 
         public override bool OnExit()
         {
-            Console.WriteLine("Exit play state");
+            foreach (string  textureId in textureIDs)
+            {
+                TextureManager.Instance.ClearFromTextureMap(textureId);
+            }
+
             return true;
         }
 

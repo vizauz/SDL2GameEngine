@@ -7,11 +7,14 @@ namespace SDL2GameEngine
     class Enemy : SDLGameObject
     {
 
-        Vector2d velocity = new Vector2d();
+        Random rnd = new Random();
 
-        public Enemy(LoaderParams _params) : base(_params)
+        public override void Load(LoaderParams _params)
         {
-            velocity.X = 2;
+            base.Load(_params);
+
+            velocity.X = rnd.Next(-3, 3);
+            velocity.Y = rnd.Next(-3, 3);
         }
 
         public override void Update()
@@ -19,9 +22,13 @@ namespace SDL2GameEngine
             currentFrame = (int)(SDL2.SDL.SDL_GetTicks() / 100 % 8);
 
             if (position.X < 0)
-                velocity.X = 2;
+                velocity.X = rnd.Next(1, 3);
             if (position.X > 640 - width)
-                velocity.X = -2;
+                velocity.X = -rnd.Next(1, 3);
+            if (position.Y < 0)
+                velocity.Y = rnd.Next(1, 3);
+            if (position.Y > 480 - height)
+                velocity.Y = -rnd.Next(1, 3);
 
             position.Add(ref velocity);
         }

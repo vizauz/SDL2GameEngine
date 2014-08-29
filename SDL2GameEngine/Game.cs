@@ -1,7 +1,7 @@
-﻿using System;
+﻿#define DEBUG
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SDL2;
 
 namespace SDL2GameEngine
@@ -30,35 +30,41 @@ namespace SDL2GameEngine
         {
             if (SDL.SDL_Init(SDL.SDL_INIT_EVERYTHING) == 0)
             {
-                Console.WriteLine("sdl init success");
+
+                Console.WriteLine("sdl init success"); 
                 window = SDL.SDL_CreateWindow(title, xpos, ypos, width, height, flags);
                 if (window != IntPtr.Zero)
                 {
-                    Console.WriteLine("Window init success");
+                    Console.WriteLine("Window init success"); 
                     _renderer = SDL.SDL_CreateRenderer(window, -1, 0);
 
                     if (_renderer != IntPtr.Zero)
                     {
-                        Console.WriteLine("Renderer init success");
+                        Console.WriteLine("Renderer init success"); 
                         SDL.SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
 
-                        _gsm.ChangeState(new MenuState());
+                        GameObjectFactory.Instance.RegisterType("MenuButton", new MenuButtonCreator());
+                        GameObjectFactory.Instance.RegisterType("Player", new PlayerCreator());
+                        GameObjectFactory.Instance.RegisterType("Enemy", new EnemyCreator());
+                        GameObjectFactory.Instance.RegisterType("AnimatedGraphic", new AnimatedGraphicCreator());
+
+                        _gsm.ChangeState(new MainMenuState());
                     }
                     else
                     {
-                        Console.WriteLine("Renderer init fail");
+                        Console.WriteLine("Renderer init fail"); 
                         return false;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Window init fail");
+                    Console.WriteLine("Window init fail"); 
                     return false;
                 }
             }
             else
             {
-                Console.WriteLine("SDL init fail");
+                Console.WriteLine("SDL init fail"); 
                 return false;
             }
 

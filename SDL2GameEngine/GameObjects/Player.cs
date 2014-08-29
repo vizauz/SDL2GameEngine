@@ -6,7 +6,10 @@ namespace SDL2GameEngine
 {
     class Player : SDLGameObject
     {
-        public Player(LoaderParams _params) : base(_params) { }
+        public override void Load(LoaderParams _params)
+        {
+            base.Load(_params);
+        }
 
         public override void Update()
         {

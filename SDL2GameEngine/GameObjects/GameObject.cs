@@ -9,9 +9,13 @@ namespace SDL2GameEngine
         protected string textureId;
         protected int currentRow;
         protected int currentFrame;
-        protected Vector2d position;
         protected int height;
         protected int width;
+        protected int numOfFrames;
+        protected Vector2d position;
+        protected Vector2d velocity;
+        protected int animSpeed;
+        
 
         public int Width { get { return width; } }
         public int Height { get { return height; } }
@@ -30,6 +34,7 @@ namespace SDL2GameEngine
                 Game.Instance.Renderer, 
                 flip);
         }
+        
         public virtual void Update() 
         {
             throw new NotImplementedException();
@@ -37,6 +42,11 @@ namespace SDL2GameEngine
         public virtual void Clean() 
         {
             throw new NotImplementedException();        
+        }
+
+        public virtual void Load(LoaderParams _params)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
+﻿#define DEBUG
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SDL2;
 
 namespace SDL2GameEngine
@@ -36,7 +36,7 @@ namespace SDL2GameEngine
             }
             else
             {
-                Console.WriteLine("Game init failure");
+                Console.WriteLine("Game init failure"); 
             }
 
             Game.Instance.Clean();
