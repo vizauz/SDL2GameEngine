@@ -41,10 +41,14 @@
     <Compile Include="GameObjects\Enemy.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
-    <Compile Include="BaseCreator.cs" />
-    <Compile Include="GameObjectFactory.cs" />
+    <Compile Include="DataDrivenDesign\BaseCreator.cs" />
+    <Compile Include="DataDrivenDesign\GameObjectFactory.cs" />
+    <Compile Include="Layer.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="GameStates\MenuState.cs" />
-    <Compile Include="Creators.cs" />
+    <Compile Include="DataDrivenDesign\Creators.cs" />
+    <Compile Include="LevelParser.cs" />
+    <Compile Include="ObjectLayer.cs" />
     <Compile Include="StateParser.cs" />
     <Compile Include="GameStates\GameoverState.cs" />
     <Compile Include="GameStates\GameState.cs" />
@@ -60,6 +64,8 @@
     <Compile Include="program.cs" />
     <Compile Include="GameObjects\SDLGameObject.cs" />
     <Compile Include="TextureManager.cs" />
+    <Compile Include="TileLayer.cs" />
+    <Compile Include="Tileset.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SDL2-CS">

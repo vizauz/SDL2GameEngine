@@ -7,7 +7,7 @@ namespace SDL2GameEngine
 {
     class MenuState : GameState
     {
-        protected List<Action> callbackList = new List<Action>();
+        protected List<Action> _callbackList = new List<Action>();
 
         protected virtual void SetCallbacks(List<Action> callbacks)
         {

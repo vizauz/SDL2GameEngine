@@ -7,18 +7,18 @@ namespace SDL2GameEngine
     {
         public override void Load(LoaderParams _params)
         {
-            position = new Vector2d(_params.X, _params.Y);
-            velocity = new Vector2d(0, 0);
-            position.X = _params.X;
-            position.Y = _params.Y;
-            width = _params.Width;
-            height = _params.Height;
-            textureId = _params.TextureId;
-            numOfFrames = _params.NumOfFrames;
-            animSpeed = _params.AnimSpeed;
+            _position = new Vector2d(_params.X, _params.Y);
+            _velocity = new Vector2d(0, 0);
+            _position.X = _params.X;
+            _position.Y = _params.Y;
+            _width = _params.Width;
+            _height = _params.Height;
+            _textureId = _params.TextureId;
+            _numOfFrames = _params.NumOfFrames;
+            _animSpeed = _params.AnimSpeed;
 
-            currentFrame = 0;
-            currentRow = 1;
+            _currentFrame = 0;
+            _currentRow = 1;
         }
     }
 }

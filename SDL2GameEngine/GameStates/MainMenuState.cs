@@ -23,19 +23,19 @@ namespace SDL2GameEngine
         public override bool OnEnter()
         {
             
-            StateParser.ParseState("config.xml", StateID, ref gameObjects, ref textureIDs);
+            StateParser.ParseState("config.xml", StateID, ref _gameObjects, ref _textureIDs);
 
-            callbackList.Add(OnEnterPlayState);
-            callbackList.Add(OnExitMenuState);
+            _callbackList.Add(OnEnterPlayState);
+            _callbackList.Add(OnExitMenuState);
 
-            SetCallbacks(callbackList);
+            SetCallbacks(_callbackList);
             
             return true;
         }
 
         public override bool OnExit()
         {
-            foreach (string textureId in textureIDs)
+            foreach (string textureId in _textureIDs)
             {
                 TextureManager.Instance.ClearFromTextureMap(textureId);
             }
@@ -46,12 +46,12 @@ namespace SDL2GameEngine
         {
             Type menuButtonType = typeof(MenuButton);
 
-            foreach (GameObject item in gameObjects)
+            foreach (GameObject item in _gameObjects)
             {
                 if (item.GetType() == menuButtonType)
                 {
                     MenuButton mb = item as MenuButton;
-                    mb.CallbackFunction = callbackList[mb.callbackID];
+                    mb.CallbackFunction = _callbackList[mb.CallbackID];
                 }
             }
         }

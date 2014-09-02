@@ -9,19 +9,18 @@ namespace SDL2GameEngine
     class Game
     {
         private bool _running;
-        public bool Running
-        {
-            get { return _running; }
-            set { _running = value; }
-        }
+        public bool Running { get { return _running; } set { _running = value; } }
 
         private static readonly Game _instance = new Game();
         public static Game Instance { get { return _instance; } }
 
-        private IntPtr window = IntPtr.Zero;
+        private IntPtr _window = IntPtr.Zero;
         private IntPtr _renderer = IntPtr.Zero;
+        private int _height, _width;
 
         public IntPtr Renderer { get { return _renderer; } }
+        public int Width { get { return _width; } private set { _width = value; } }
+        public int Height { get { return _height; } private set { _height = value; } }
 
         private GameStateMachine _gsm = new GameStateMachine();
         public GameStateMachine GSM { get { return _gsm; } }
@@ -32,11 +31,11 @@ namespace SDL2GameEngine
             {
 
                 Console.WriteLine("sdl init success"); 
-                window = SDL.SDL_CreateWindow(title, xpos, ypos, width, height, flags);
-                if (window != IntPtr.Zero)
+                _window = SDL.SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+                if (_window != IntPtr.Zero)
                 {
                     Console.WriteLine("Window init success"); 
-                    _renderer = SDL.SDL_CreateRenderer(window, -1, 0);
+                    _renderer = SDL.SDL_CreateRenderer(_window, -1, 0);
 
                     if (_renderer != IntPtr.Zero)
                     {
@@ -48,7 +47,8 @@ namespace SDL2GameEngine
                         GameObjectFactory.Instance.RegisterType("Enemy", new EnemyCreator());
                         GameObjectFactory.Instance.RegisterType("AnimatedGraphic", new AnimatedGraphicCreator());
 
-                        _gsm.ChangeState(new MainMenuState());
+                        SDL.SDL_GetWindowSize(_window, out _width, out _height);
+                        _gsm.ChangeState(new PlayState());
                     }
                     else
                     {
@@ -90,7 +90,7 @@ namespace SDL2GameEngine
 
         public void Clean()
         {
-            SDL.SDL_DestroyWindow(window);
+            SDL.SDL_DestroyWindow(_window);
             SDL.SDL_DestroyRenderer(_renderer);
             SDL.SDL_Quit();
         }

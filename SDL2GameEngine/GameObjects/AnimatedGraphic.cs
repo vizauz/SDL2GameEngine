@@ -11,7 +11,7 @@ namespace SDL2GameEngine
     
         public override void Update()
         {
-            currentFrame = (int)((SDL.SDL_GetTicks() / (1000 / animSpeed)) % numOfFrames);
+            _currentFrame = (int)((SDL.SDL_GetTicks() / (1000 / _animSpeed)) % _numOfFrames);
         }
     }
 }

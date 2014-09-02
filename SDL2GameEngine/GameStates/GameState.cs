@@ -7,19 +7,19 @@ namespace SDL2GameEngine
     {
         public string StateID { get; protected set; }
 
-        public List<GameObject> gameObjects = new List<GameObject>();
-        public List<string> textureIDs = new List<string>();
+        public List<GameObject> _gameObjects = new List<GameObject>();
+        public List<string> _textureIDs = new List<string>();
 
         public virtual void Render()
         {
-            foreach (GameObject go in gameObjects)
+            foreach (GameObject go in _gameObjects)
             {
                 go.Draw();
             }
         }
         public virtual void Update()
         {
-            foreach (GameObject go in gameObjects)
+            foreach (GameObject go in _gameObjects)
             {
                 go.Update();
             }

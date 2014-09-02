@@ -16,7 +16,7 @@ namespace SDL2GameEngine
 
             UInt32 frameStart, frameTime;
 
-            if (Game.Instance.Init(String.Empty, 805240832, 805240832, 640, 480, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN))
+            if (Game.Instance.Init(String.Empty, 805240832, 805240832, 320, 320, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN))
             {
                 while (Game.Instance.Running)
                 {

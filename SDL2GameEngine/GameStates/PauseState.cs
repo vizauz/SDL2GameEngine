@@ -12,12 +12,12 @@ namespace SDL2GameEngine
 
         public override bool OnEnter()
         {
-            StateParser.ParseState("config.xml", StateID, ref gameObjects, ref textureIDs);
+            StateParser.ParseState("config.xml", StateID, ref _gameObjects, ref _textureIDs);
 
-            callbackList.Add(MenuButtonCallback);
-            callbackList.Add(BackButtonCallback);
+            _callbackList.Add(MenuButtonCallback);
+            _callbackList.Add(BackButtonCallback);
 
-            SetCallbacks(callbackList);
+            SetCallbacks(_callbackList);
        
             return true;
         }
@@ -45,12 +45,12 @@ namespace SDL2GameEngine
         {
             Type menuButtonType = typeof(MenuButton);
 
-            foreach (GameObject item in gameObjects)
+            foreach (GameObject item in _gameObjects)
             {
                 if (item.GetType() == menuButtonType)
                 {
                     MenuButton mb = item as MenuButton;
-                    mb.CallbackFunction = callbackList[mb.callbackID];
+                    mb.CallbackFunction = _callbackList[mb.CallbackID];
                 }
             }
         }

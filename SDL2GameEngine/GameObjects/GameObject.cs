@@ -6,31 +6,31 @@ namespace SDL2GameEngine
 {
     abstract class GameObject
     {
-        protected string textureId;
-        protected int currentRow;
-        protected int currentFrame;
-        protected int height;
-        protected int width;
-        protected int numOfFrames;
-        protected Vector2d position;
-        protected Vector2d velocity;
-        protected int animSpeed;
+        protected string _textureId;
+        protected int _currentRow;
+        protected int _currentFrame;
+        protected int _height;
+        protected int _width;
+        protected int _numOfFrames;
+        protected Vector2d _position;
+        protected Vector2d _velocity;
+        protected int _animSpeed;
         
 
-        public int Width { get { return width; } }
-        public int Height { get { return height; } }
-        public Vector2d Position { get { return position; } }
+        public int Width { get { return _width; } }
+        public int Height { get { return _height; } }
+        public Vector2d Position { get { return _position; } }
 
         public virtual void Draw(SDL.SDL_RendererFlip flip = SDL.SDL_RendererFlip.SDL_FLIP_NONE)
         {
             TextureManager.Instance.DrawFrame(
-                textureId, 
-                (int)position.X,
-                (int)position.Y,
-                width, 
-                height, 
-                currentRow, 
-                currentFrame, 
+                _textureId, 
+                (int)_position.X,
+                (int)_position.Y,
+                _width, 
+                _height, 
+                _currentRow, 
+                _currentFrame, 
                 Game.Instance.Renderer, 
                 flip);
         }

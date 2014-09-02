@@ -17,9 +17,7 @@ namespace SDL2GameEngine
             IntPtr tmpSurface = SDL_image.IMG_Load(fileName);
             if (tmpSurface == IntPtr.Zero)
             {
-#if DEBUG
                 Console.WriteLine("Image loading failed");
-#endif
                 return false;
             }
 
@@ -77,6 +75,22 @@ namespace SDL2GameEngine
         {
             if (textureMap.ContainsKey(id))
                 textureMap.Remove(id);
+        }
+
+        public void DrawTile(string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, IntPtr renderer)
+        {
+            SDL.SDL_Rect srcRect;
+            SDL.SDL_Rect destRect;
+            srcRect.x = margin + (spacing + width) * currentFrame;
+            srcRect.y = margin + (spacing + height) * currentRow;
+            srcRect.w = destRect.w = width;
+            srcRect.h = destRect.h = height;
+            destRect.x = x;
+            destRect.y = y;
+
+            SDL.SDL_Point center;
+            center.x = 0; center.y = 0;
+            SDL.SDL_RenderCopyEx(renderer, textureMap[id], ref srcRect, ref destRect, 0, ref center, SDL.SDL_RendererFlip.SDL_FLIP_NONE);
         }
     }
 }
