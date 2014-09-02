@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using System.Xml;
 using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace SDL2GameEngine
 {
     class StateParser
     {
-
         static public bool ParseState(string stateFile, string stateID, ref List<GameObject> gameObjects, ref List<string> textureIDs)
         {
             XDocument doc = null;
@@ -25,15 +22,15 @@ namespace SDL2GameEngine
             }
 
             var state = from s in doc.Root.Elements()
-                             .Where(t => t.Attribute("stateID").Value.Equals(stateID)) 
-                         select s;
+                             .Where(t => t.Attribute("stateID").Value.Equals(stateID))
+                        select s;
 
             var textures = from t in state.Elements()
-                               .Where(tmp => tmp.Name == "textures") 
+                               .Where(tmp => tmp.Name == "textures")
                            select t;
 
             var objects = from o in state.Elements()
-                              .Where(tmp => tmp.Name == "objects") 
+                              .Where(tmp => tmp.Name == "objects")
                           select o;
 
             ParseTextures(textures, ref textureIDs);
@@ -75,6 +72,5 @@ namespace SDL2GameEngine
                 TextureManager.Instance.Load(fileName, id, Game.Instance.Renderer);
             }
         }
-
     }
 }

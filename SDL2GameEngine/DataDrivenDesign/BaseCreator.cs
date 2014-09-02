@@ -2,8 +2,11 @@
 
 namespace SDL2GameEngine
 {
-    class BaseCreator
+    internal class BaseCreator
     {
-        virtual public GameObject CreateGameObject() { throw new NotImplementedException(); }
+        virtual public GameObject CreateGameObject()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

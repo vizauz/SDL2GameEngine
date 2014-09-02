@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SDL2GameEngine
 {
-    class MainMenuState : MenuState
+    internal class MainMenuState : MenuState
     {
         public MainMenuState()
         {
@@ -22,14 +22,13 @@ namespace SDL2GameEngine
 
         public override bool OnEnter()
         {
-            
             StateParser.ParseState("config.xml", StateID, ref _gameObjects, ref _textureIDs);
 
             _callbackList.Add(OnEnterPlayState);
             _callbackList.Add(OnExitMenuState);
 
             SetCallbacks(_callbackList);
-            
+
             return true;
         }
 

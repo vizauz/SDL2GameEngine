@@ -1,17 +1,15 @@
 ﻿#define DEBUG
 
-using System;
-
 namespace SDL2GameEngine
 {
-    class PlayState : GameState
+    internal class PlayState : GameState
     {
         public PlayState()
         {
             StateID = "Play";
         }
 
-        Level l;
+        private Level l;
 
         public override bool OnEnter()
         {
@@ -28,7 +26,7 @@ namespace SDL2GameEngine
 
         public override bool OnExit()
         {
-            foreach (string  textureId in _textureIDs)
+            foreach (string textureId in _textureIDs)
             {
                 TextureManager.Instance.ClearFromTextureMap(textureId);
             }
@@ -61,7 +59,7 @@ namespace SDL2GameEngine
             int rightA = (int)a.Position.X + a.Width;
             int rightB = (int)b.Position.X + b.Width;
             int topA = (int)a.Position.Y;
-            int topB = (int )b.Position.Y;
+            int topB = (int)b.Position.Y;
             int bottomA = (int)a.Position.Y + a.Height;
             int bottomB = (int)b.Position.Y + b.Height;
 

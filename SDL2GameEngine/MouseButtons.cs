@@ -1,8 +1,8 @@
 ﻿namespace SDL2GameEngine
 {
-    enum MouseButtons
+    internal enum MouseButtons
     {
-        LEFT = 0, 
+        LEFT = 0,
         MIDDLE = 1,
         RIGHT = 2
     }

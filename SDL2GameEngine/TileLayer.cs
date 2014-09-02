@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using OpenTK;
 
 namespace SDL2GameEngine
 {
-    class TileLayer : Layer
+    internal class TileLayer : Layer
     {
+        private int _numColumns;
+        private int _numRows;
+        private int _tileSize;
+        private Vector2d _position;
+        private Vector2d _velocity;
 
-        int                 _numColumns;
-        int                 _numRows;
-        int                 _tileSize;
-        Vector2d            _position;
-        Vector2d            _velocity;
         //List<List<int>>     _tilesIDs = new List<List<int>>();
-        int[,]              _tilesIDs;
-        List<Tileset>       _tilesets = new List<Tileset>();
+        private int[,] _tilesIDs;
+
+        private List<Tileset> _tilesets = new List<Tileset>();
 
         public int TileSize { get { return _tileSize; } set { _tileSize = value; } }
-        
 
         public TileLayer(int tileSize, List<Tileset> tilesets)
         {
@@ -60,7 +57,6 @@ namespace SDL2GameEngine
                         );
                 }
             }
-
         }
 
         public override void Update()

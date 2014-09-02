@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SDL2GameEngine
 {
@@ -25,7 +23,7 @@ namespace SDL2GameEngine
         }
         public override bool OnExit()
         {
-            foreach (string textureID  in _textureIDs)
+            foreach (string textureID in _textureIDs)
             {
                 TextureManager.Instance.ClearFromTextureMap(textureID);
             }
@@ -50,7 +48,7 @@ namespace SDL2GameEngine
 
             foreach (GameObject item in _gameObjects)
             {
-                if(item.GetType() == menuButtonType)
+                if (item.GetType() == menuButtonType)
                 {
                     MenuButton mb = item as MenuButton;
                     mb.CallbackFunction = _callbackList[mb.CallbackID];

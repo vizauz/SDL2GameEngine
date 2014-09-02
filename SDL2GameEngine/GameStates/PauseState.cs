@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SDL2GameEngine
 {
-    class PauseState : MenuState
+    internal class PauseState : MenuState
     {
         public PauseState()
         {
@@ -18,7 +18,7 @@ namespace SDL2GameEngine
             _callbackList.Add(BackButtonCallback);
 
             SetCallbacks(_callbackList);
-       
+
             return true;
         }
 

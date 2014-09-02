@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 using System.IO;
 using System.IO.Compression;
-using SDL2;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace SDL2GameEngine
 {
@@ -51,7 +49,6 @@ namespace SDL2GameEngine
             var objectGroup = doc.Root.Element("objectgroup");
             ParseObjectLayer(objectGroup, ref level._layers);
 
-
             return level;
         }
 
@@ -65,12 +62,10 @@ namespace SDL2GameEngine
                 int x = 0, y = 0, width = 0, height = 0, numFrames = 0, callbackID = 0, animSpeed = 0;
                 string textureID = String.Empty;
 
-
                 Int32.TryParse(item.Attribute("x").Value, out x);
                 Int32.TryParse(item.Attribute("y").Value, out y);
 
                 GameObject gameObject = GameObjectFactory.Instance.Create(item.Attribute("type").Value);
-
 
                 XElement properties = item.Element("properties");
                 foreach (XElement property in properties.Elements("property"))
@@ -117,12 +112,12 @@ namespace SDL2GameEngine
             }
         }
 
-        private static void ParseTileset(XElement root, ref List<Tileset> tilesets) 
+        private static void ParseTileset(XElement root, ref List<Tileset> tilesets)
         {
             // HACK: hope this will work...
-            XElement node = (XElement) root.FirstNode;
+            XElement node = (XElement)root.FirstNode;
             // from el in root.Elements().Where(tmp => tmp.Name == "image") select el;
-            
+
             TextureManager.Instance.Load(node.Attribute("source").Value, root.Attribute("name").Value, Game.Instance.Renderer);
 
             Tileset tileset;

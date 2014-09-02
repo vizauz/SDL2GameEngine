@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SDL2GameEngine
 {
-    abstract class GameState
+    internal abstract class GameState
     {
         public string StateID { get; protected set; }
 
@@ -17,6 +17,7 @@ namespace SDL2GameEngine
                 go.Draw();
             }
         }
+
         public virtual void Update()
         {
             foreach (GameObject go in _gameObjects)
@@ -24,10 +25,12 @@ namespace SDL2GameEngine
                 go.Update();
             }
         }
+
         public virtual bool OnEnter()
         {
             throw new NotImplementedException();
         }
+
         public virtual bool OnExit()
         {
             throw new NotImplementedException();

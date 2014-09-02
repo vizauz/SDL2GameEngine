@@ -1,7 +1,6 @@
 ﻿#define DEBUG
 
 using System;
-using System.Collections.Generic;
 using SDL2;
 
 namespace SDL2GameEngine
@@ -29,17 +28,16 @@ namespace SDL2GameEngine
         {
             if (SDL.SDL_Init(SDL.SDL_INIT_EVERYTHING) == 0)
             {
-
-                Console.WriteLine("sdl init success"); 
+                Console.WriteLine("sdl init success");
                 _window = SDL.SDL_CreateWindow(title, xpos, ypos, width, height, flags);
                 if (_window != IntPtr.Zero)
                 {
-                    Console.WriteLine("Window init success"); 
+                    Console.WriteLine("Window init success");
                     _renderer = SDL.SDL_CreateRenderer(_window, -1, 0);
 
                     if (_renderer != IntPtr.Zero)
                     {
-                        Console.WriteLine("Renderer init success"); 
+                        Console.WriteLine("Renderer init success");
                         SDL.SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
 
                         GameObjectFactory.Instance.RegisterType("MenuButton", new MenuButtonCreator());
@@ -52,19 +50,19 @@ namespace SDL2GameEngine
                     }
                     else
                     {
-                        Console.WriteLine("Renderer init fail"); 
+                        Console.WriteLine("Renderer init fail");
                         return false;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Window init fail"); 
+                    Console.WriteLine("Window init fail");
                     return false;
                 }
             }
             else
             {
-                Console.WriteLine("SDL init fail"); 
+                Console.WriteLine("SDL init fail");
                 return false;
             }
 
@@ -78,7 +76,7 @@ namespace SDL2GameEngine
             SDL.SDL_RenderClear(_renderer);
 
             _gsm.Render();
- 
+
             // draw to the screen
             SDL.SDL_RenderPresent(_renderer);
         }

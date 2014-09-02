@@ -1,6 +1,6 @@
 ﻿namespace SDL2GameEngine
 {
-    class PlayerCreator : BaseCreator
+    internal class PlayerCreator : BaseCreator
     {
         public override GameObject CreateGameObject()
         {
@@ -8,7 +8,7 @@
         }
     }
 
-    class MenuButtonCreator : BaseCreator
+    internal class MenuButtonCreator : BaseCreator
     {
         public override GameObject CreateGameObject()
         {
@@ -16,7 +16,7 @@
         }
     }
 
-    class AnimatedGraphicCreator : BaseCreator
+    internal class AnimatedGraphicCreator : BaseCreator
     {
         public override GameObject CreateGameObject()
         {
@@ -24,7 +24,7 @@
         }
     }
 
-    class EnemyCreator : BaseCreator
+    internal class EnemyCreator : BaseCreator
     {
         public override GameObject CreateGameObject()
         {

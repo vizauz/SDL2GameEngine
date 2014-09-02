@@ -1,7 +1,4 @@
-﻿#define DEBUG
-
-using System;
-using System.Collections.Generic;
+﻿using System;
 using SDL2;
 
 namespace SDL2GameEngine
@@ -13,7 +10,6 @@ namespace SDL2GameEngine
 
         static void Main()
         {
-
             UInt32 frameStart, frameTime;
 
             if (Game.Instance.Init(String.Empty, 805240832, 805240832, 320, 320, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN))
@@ -36,7 +32,7 @@ namespace SDL2GameEngine
             }
             else
             {
-                Console.WriteLine("Game init failure"); 
+                Console.WriteLine("Game init failure");
             }
 
             Game.Instance.Clean();

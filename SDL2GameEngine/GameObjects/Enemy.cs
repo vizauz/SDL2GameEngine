@@ -1,12 +1,11 @@
 ﻿using System;
-using OpenTK;
 using SDL2;
 
 namespace SDL2GameEngine
 {
-    class Enemy : SDLGameObject
+    internal class Enemy : SDLGameObject
     {
-        Random rnd;
+        private Random rnd;
 
         public Enemy()
         {
@@ -15,7 +14,6 @@ namespace SDL2GameEngine
 
         public override void Load(LoaderParams _params)
         {
-
             base.Load(_params);
 
             _velocity.X = rnd.Next(-3, 3);

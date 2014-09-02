@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SDL2GameEngine
 {
     class Level
     {
-
         public List<Tileset> _tilesets = new List<Tileset>();
         public List<Layer> _layers = new List<Layer>();
 

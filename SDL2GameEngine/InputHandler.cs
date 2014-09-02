@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using SDL2;
+﻿using System.Collections.Generic;
 using OpenTK;
+using SDL2;
 
 namespace SDL2GameEngine
 {
-    class InputHandler
+    internal class InputHandler
     {
+        private static readonly InputHandler _instance = new InputHandler();
 
-        static readonly InputHandler _instance = new InputHandler();
         public static InputHandler Instance { get { return _instance; } }
 
-        bool [] mouseButtonStates = new bool[3];
-        
-        Vector2d _mousePosition = new Vector2d();
+        private bool[] mouseButtonStates = new bool[3];
+
+        private Vector2d _mousePosition = new Vector2d();
+
         public Vector2d MousePosition
         {
             get
@@ -22,7 +22,7 @@ namespace SDL2GameEngine
             }
         }
 
-        Dictionary<SDL.SDL_Scancode, bool> keyboard = new Dictionary<SDL.SDL_Scancode, bool>()
+        private Dictionary<SDL.SDL_Scancode, bool> keyboard = new Dictionary<SDL.SDL_Scancode, bool>()
         {
             { SDL.SDL_Scancode.SDL_SCANCODE_UNKNOWN ,false },
             { SDL.SDL_Scancode.SDL_SCANCODE_A ,false },
@@ -274,7 +274,7 @@ namespace SDL2GameEngine
                 mouseButtonStates[i] = false;
         }
 
-        public void Update() 
+        public void Update()
         {
             SDL.SDL_Event _event;
 
@@ -285,21 +285,27 @@ namespace SDL2GameEngine
                     case SDL.SDL_EventType.SDL_QUIT:
                         Game.Instance.Running = false;
                         break;
+
                     case SDL.SDL_EventType.SDL_MOUSEBUTTONDOWN:
                         OnMouseButtonDown(_event);
                         break;
+
                     case SDL.SDL_EventType.SDL_MOUSEBUTTONUP:
                         OnMouseButtonUp(_event);
                         break;
+
                     case SDL.SDL_EventType.SDL_MOUSEMOTION:
                         OnMouseMove(_event);
                         break;
+
                     case SDL.SDL_EventType.SDL_KEYDOWN:
                         OnKeyDown(_event);
                         break;
+
                     case SDL.SDL_EventType.SDL_KEYUP:
                         OnKeyUp(_event);
                         break;
+
                     default:
                         break;
                 }

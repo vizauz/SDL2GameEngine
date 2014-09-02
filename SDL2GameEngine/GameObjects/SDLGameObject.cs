@@ -1,9 +1,8 @@
-﻿using System;
-using OpenTK;
+﻿using OpenTK;
 
 namespace SDL2GameEngine
 {
-    class SDLGameObject : GameObject
+    internal class SDLGameObject : GameObject
     {
         public override void Load(LoaderParams _params)
         {

@@ -3,22 +3,24 @@ using OpenTK;
 
 namespace SDL2GameEngine
 {
-    class MenuButton : SDLGameObject
+    internal class MenuButton : SDLGameObject
     {
-        enum ButtonState
+        private enum ButtonState
         {
             MOUSE_OUT = 0,
             MOUSE_OVER = 1,
             CLICKED = 2
         }
 
-        bool released;
+        private bool released;
+
         public int CallbackID { get; private set; }
+
         public Action CallbackFunction { get; set; }
 
-        public MenuButton() 
-            : base() 
-        { 
+        public MenuButton()
+            : base()
+        {
             _currentFrame = (int)ButtonState.MOUSE_OUT;
         }
 
@@ -48,7 +50,7 @@ namespace SDL2GameEngine
             }
             else
             {
-                _currentFrame = (int)ButtonState.MOUSE_OUT;  
+                _currentFrame = (int)ButtonState.MOUSE_OUT;
             }
         }
 
