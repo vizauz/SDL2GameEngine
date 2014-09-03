@@ -11,7 +11,8 @@
     <RootNamespace>SDL2GameEngine</RootNamespace>
     <AssemblyName>SDL2GameEngine</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -43,6 +44,7 @@
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="DataDrivenDesign\BaseCreator.cs" />
     <Compile Include="DataDrivenDesign\GameObjectFactory.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="GameStates\MenuState.cs" />
@@ -74,6 +76,9 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

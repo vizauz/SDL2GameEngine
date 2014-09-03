@@ -15,7 +15,9 @@ namespace SDL2GameEngine
         {
             //StateParser.ParseState("config.xml", StateID, ref _gameObjects, ref _textureIDs);
             l = LevelParser.ParseLevel("map.tmx");
+            SoundManager.Instance.Load("assets/jump.wav", "jump", SoundManager.SoundType.SOUND_MUSIC);
 
+            SoundManager.Instance.PlayMusic("jump", 5);
             return true;
         }
 

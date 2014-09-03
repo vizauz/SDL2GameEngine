@@ -99,7 +99,7 @@ namespace SDL2GameEngine
                 gameObject.Load(new LoaderParams(x, y, width, height, textureID));
                 objLayer.GameObjects.Add(gameObject);
             }
-
+            Console.WriteLine("Object in object layer: {0}", objLayer.GameObjects.Count);
             layers.Add(objLayer);
         }
 
